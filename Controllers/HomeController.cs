@@ -12,15 +12,18 @@ namespace nctcdemoapp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IEmployee employee;
+        public HomeController(ILogger<HomeController> logger,IEmployee _employee)
         {
             _logger = logger;
+            employee = _employee;
         }
 
         public IActionResult Index()
         {
-            return View();
+           var model= employee.GetEmployeeList();
+            
+            return View(model);
         }
 
         public IActionResult Privacy()

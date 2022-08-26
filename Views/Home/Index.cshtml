@@ -1,8 +1,41 @@
-﻿@{
+﻿<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.jqueryui.min.css" />
+
+@{
     ViewData["Title"] = "Home Page";
 }
+@model List<nctcdemoapp.Models.EmployeeDetail>
 
 <div class="text-center">
     <h1 class="display-4">Welcome to nctc aug batch</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <table id="dt" border="1" width="95%">
+        <thead>
+            <tr class="btn-primary">
+                <th> ID</th>
+                <th> Name</th>
+                <th> Designation</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in Model)
+            {
+                <tr>
+                    <td>@emp.Id</td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Designation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.jqueryui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dt').DataTable();
+    });
+</script>
